@@ -3,12 +3,14 @@ const mongoose = require("mongoose")
 const app = express()
 const bodyParser= require("body-parser")
 const rutaNoticias = require("./rutas/noticias.rutas")
+const rutaUsuario = require("./rutas/usuario.rutas")
 
 //Middleware
 
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use("/api/noticias" , rutaNoticias)
+app.use("/api/usuarios" , rutaUsuario)
 app.get("/" , (req,res) => {
     res.status(200).send("OK")
 })

@@ -24,7 +24,7 @@ const usuarioSchema= new mongoose.Schema({
         required: true,
         min: [18, 'Debes ser mayor de 18 años']
     },
-    password:{
+    email:{
         type: String,
         required:true,
         unique: true,
@@ -45,7 +45,8 @@ const usuarioSchema= new mongoose.Schema({
         type: String,
         required:true,
         trim: true,
-        enum: ["ADMON","CLIENTE","TRABAJADOR"]
+        enum: ["ADMON","CLIENTE","TRABAJADOR"],
+        default: "CLIENTE"
     }
     /* grupos publicaciones , añadimos descripcion?*/
 });
