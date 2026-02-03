@@ -29,7 +29,7 @@ class UsuarioControlador{
             if(!usuarioNuevo){
                 return res.status(404).send("No se ha podido crear usuario")
             }
-            return res.status(201).json({mensaje: "Usuario registrado"}).redirect('/login')
+            return res.status(201).json({mensaje: "Usuario registrado"})
         }catch(err){
             console.error("Error en el register", err)
             return res.status(500).json({mensaje: "Error general, ver consola"})
@@ -37,18 +37,47 @@ class UsuarioControlador{
     }
     async login(req,res){
         try{
-            const { username, password } = req.body; 
-            const usuario = await udao.findOne({username: req.body.username}).select("+password");
-            if(!usuario){
-                return res.status(401).json({mensaje:"Usuario incorrecto"})
-            }
-            const verficar = await bcrypt.compare(password, usuario.password)
-            if(!verficar){
-                return res.status(401).json({mensaje:"Contraseña incorrecta"})
-            }
-            const token = jwt.sign({id: usuario._id , rol: usuario.rol }, "CLAVE_SECRETA" , {expiresIn: "1h"});
+    
+          const { username, password } = req.body;
 
-            return res.status(201).json({token, rol: usuario.rol , nombre: usuario.name});
+          const usuario = await udao
+            .findOne({ username })
+            .select("+password");
+
+          if (!usuario) {
+            return res.status(401).json({ mensaje: "Usuario incorrecto" });
+          }
+
+          let passwordCorrecta = false;
+
+         
+          if (usuario.password.startsWith("$2")) {
+            passwordCorrecta = await bcrypt.compare(password, usuario.password);
+          } 
+         
+          else {
+            passwordCorrecta = password === usuario.password;
+            if (passwordCorrecta) {
+                usuario.password = await bcrypt.hash(password, 10);
+                await usuario.save();
+            }
+          }
+
+          if (!passwordCorrecta) {
+            return res.status(401).json({ mensaje: "Contraseña incorrecta" });
+          }
+
+          const token = jwt.sign(
+            { id: usuario._id, rol: usuario.rol },
+            "CLAVE_SECRETA",
+            { expiresIn: "1h" }
+          );
+
+          return res.status(200).json({
+            token,
+            rol: usuario.rol,
+            nombre: usuario.name
+          });
 
         }catch(err){
             console.error("Error en el login", err)

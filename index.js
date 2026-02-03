@@ -5,6 +5,8 @@ const cors = require("cors");
 const bodyParser= require("body-parser")
 const rutaNoticias = require("./rutas/noticias.rutas")
 const rutaUsuario = require("./rutas/usuario.rutas")
+const rutaGrupos = require("./rutas/grupos.rutas")
+const rutaEventos = require("./rutas/eventos.ruta")
 
 //Middleware
 app.use(cors({
@@ -16,6 +18,8 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use("/api/noticias" , rutaNoticias)
 app.use("/api/usuarios" , rutaUsuario)
+app.use("/api/grupos" , rutaGrupos)
+app.use("/api/eventos" , rutaEventos)
 app.get("/" , (req,res) => {
     res.status(200).send("OK")
 })
