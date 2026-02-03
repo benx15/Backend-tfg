@@ -15,7 +15,7 @@ const grupoSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-    /*usuarios[] eventos? noticias? */
+    /*usuarios[]/no  eventos?si  noticias? si post si  */
 });
 
 const Grupo =  mongoose.model("grupo" , grupoSchema)

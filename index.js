@@ -1,12 +1,17 @@
 const express = require("express")
 const mongoose = require("mongoose")
 const app = express()
+const cors = require("cors");
 const bodyParser= require("body-parser")
 const rutaNoticias = require("./rutas/noticias.rutas")
 const rutaUsuario = require("./rutas/usuario.rutas")
 
 //Middleware
-
+app.use(cors({
+    origin: "http://localhost:4200", // <- frontend permitido
+    methods: ["GET","POST","PUT","DELETE"],
+    credentials: true
+}));
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use("/api/noticias" , rutaNoticias)

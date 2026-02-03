@@ -29,7 +29,7 @@ class UsuarioControlador{
             if(!usuarioNuevo){
                 return res.status(404).send("No se ha podido crear usuario")
             }
-            return res.status(201).json({mensaje: "Usuario registrado"})
+            return res.status(201).json({mensaje: "Usuario registrado"}).redirect('/login')
         }catch(err){
             console.error("Error en el register", err)
             return res.status(500).json({mensaje: "Error general, ver consola"})

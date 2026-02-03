@@ -1,58 +1,59 @@
 const usuarios = 
 [
-    {
-      "username": "juan123",
-      "password": "juan123@gmail.com",
-      "name": "Juan",
-      "lastName": "Pérez",
-      "age": 25,
-      "enabled": true,
-      "rol": "CLIENTE"
-    },
-    {
-      "username": "maria88",
-      "password": "maria88@hotmail.com",
-      "name": "María",
-      "lastName": "Gómez",
-      "age": 32,
-      "enabled": true,
-      "rol": "ADMON"
-    },
-    {
-      "username": "carlos2026",
-      "password": "carlos2026@yahoo.com",
-      "name": "Carlos",
-      "lastName": "López",
-      "age": 28,
-      "enabled": true,
-      "rol": "TRABAJADOR"
-    },
-    {
-      "username": "laura_s",
-      "password": "laura_s@gmail.com",
-      "name": "Laura",
-      "lastName": "Sánchez",
-      "age": 22,
-      "enabled": true,
-      "rol": "CLIENTE"
-    },
-    {
-      "username": "pedro_m",
-      "password": "pedro_m@hotmail.com",
-      "name": "Pedro",
-      "lastName": "Martínez",
-      "age": 40,
-      "enabled": true,
-      "rol": "ADMON"
-    },
-    {
-      "username": "sofia_r",
-      "password": "sofia_r@yahoo.com",
-      "name": "Sofía",
-      "lastName": "Ruiz",
-      "age": 30,
-      "enabled": true,
-      "rol": "TRABAJADOR"
-    }
+  {
+    "username": "admin01",
+    "password": "admin123",
+    "name": "Carlos",
+    "lastName": "García",
+    "age": 35,
+    "email": "admin01@gmail.com",
+    "rol": "ADMON"
+  },
+  {
+    "username": "cliente01",
+    "password": "cliente123",
+    "name": "Laura",
+    "lastName": "Martínez",
+    "age": 25,
+    "email": "cliente01@gmail.com",
+    "rol": "CLIENTE"
+  },
+  {
+    "username": "trabajador01",
+    "password": "trabajador123",
+    "name": "Javier",
+    "lastName": "López",
+    "age": 29,
+    "email": "trabajador01@gmail.com",
+    "rol": "TRABAJADOR"
+  },
+  {
+    "username": "cliente02",
+    "password": "cliente456",
+    "name": "Ana",
+    "lastName": "Sánchez",
+    "age": 42,
+    "email": "cliente02@gmail.com",
+    "rol": "CLIENTE"
+  },
+  {
+    "username": "trabajador02",
+    "password": "trabajador456",
+    "name": "Miguel",
+    "lastName": "Ruiz",
+    "age": 31,
+    "email": "trabajador02@gmail.com",
+    "rol": "TRABAJADOR"
+  },
+  {
+    "username": "cliente03",
+    "password": "cliente789",
+    "name": "Beatriz",
+    "lastName": "Fernández",
+    "age": 22,
+    "email": "cliente03@gmail.com",
+    "rol": "CLIENTE"
+  }
 ]
+
 module.exports= usuarios
