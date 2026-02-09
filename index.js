@@ -8,6 +8,7 @@ const rutaUsuario = require("./rutas/usuario.rutas")
 const rutaGrupos = require("./rutas/grupos.rutas")
 const rutaEventos = require("./rutas/eventos.ruta")
 const cargaDatos = require("./semilla/semilla.datos")
+const rutaAdmin = require("./rutas/admin.ruta")
 
 //Middleware
 app.use(cors({
@@ -21,6 +22,7 @@ app.use("/api/noticias" , rutaNoticias)
 app.use("/api/usuarios" , rutaUsuario)
 app.use("/api/grupos" , rutaGrupos)
 app.use("/api/eventos" , rutaEventos)
+app.use("/admin", rutaAdmin)
 app.get("/" , (req,res) => {
     res.status(200).send("OK")
 })
