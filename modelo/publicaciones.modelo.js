@@ -15,7 +15,7 @@ const publicacionesSchema = new mongoose.Schema({
         required: true
     },
     fecha:{
-        type:Date.now,
+        type:Date,
         required: true,
         default: Date.now
     }

@@ -7,6 +7,7 @@ const rutaNoticias = require("./rutas/noticias.rutas")
 const rutaUsuario = require("./rutas/usuario.rutas")
 const rutaGrupos = require("./rutas/grupos.rutas")
 const rutaEventos = require("./rutas/eventos.ruta")
+const cargaDatos = require("./semilla/semilla.datos")
 
 //Middleware
 app.use(cors({
@@ -26,7 +27,19 @@ app.get("/" , (req,res) => {
 
 // cammbiar 27017 por conexion atlas
 mongoose.connect("mongodb://127.0.0.1:27017/bbdd-tfg")
-.then(() => console.log("Mongodb conectado"))
-.catch(() => console.log("mongodb NOO concetado"))
+  .then(async () => {
+    console.log("MongoDB conectado");
 
-app.listen(3000, () => console.log("Node arrancado por el puerto 3000"))
+    await cargaDatos.cargaEventos(); 
+    await cargaDatos.cargaNoticias(); 
+    await cargaDatos.cargaUsuarios(); 
+    await cargaDatos.cargaGrupos(); 
+    await cargaDatos.cargaPublicaciones(); 
+
+    app.listen(3000, () => {
+      console.log("Node arrancado por el puerto 3000");
+    });
+  })
+  .catch(err => {
+    console.error("mongoDB NOOO conectado", err);
+  });
