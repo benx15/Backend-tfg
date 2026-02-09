@@ -22,5 +22,5 @@ const publicacionesSchema = new mongoose.Schema({
     /* respuesta*/
 });
 
-const Publicacion = mongoose.model("publicacion", publicacionesSchema)
+const Publicacion = mongoose.model("publicacione", publicacionesSchema)
 module.exports= Publicacion
