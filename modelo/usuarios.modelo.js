@@ -47,8 +47,15 @@ const usuarioSchema= new mongoose.Schema({
         trim: true,
         enum: ["ADMON","CLIENTE","TRABAJADOR"],
         default: "CLIENTE"
+    },
+    fechaRegistro:{
+        type: Date,
+        default: Date.now
+    },
+    descripcion:{
+        type: String
     }
-    /* grupos publicaciones , añadimos descripcion?*/
+    /* grupos publicaciones y eventos hecho*/
 });
 
 const Usuario = mongoose.model("usuario", usuarioSchema)

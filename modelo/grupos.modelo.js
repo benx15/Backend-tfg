@@ -14,7 +14,27 @@ const grupoSchema = new mongoose.Schema({
     genero:{
         type: String,
         required: true
-    }
+    },
+    usuarios: [
+        {
+            id: { type: mongoose.Schema.Types.ObjectId, ref: "Usuario", required: true },
+            username: { type: String, required: true }
+        }
+    ],
+    eventos: [
+        {
+            id: { type: mongoose.Schema.Types.ObjectId, ref: "Evento", required: true },
+            nombre: { type: String, required: true },
+            fecha: { type: Date, required: true }
+        }
+    ],
+    noticias:[
+        {
+            id: { type: mongoose.Schema.Types.ObjectId, ref: "Noticia", required: true },
+            titular: { type: String, required: true },
+            contenido: { type: String, required: true }
+        }
+    ],
     /*usuarios[]/no  eventos?si  noticias? si post si  */
 });
 
