@@ -6,7 +6,7 @@ const roles = require("../intermediario/porRoles")
 
 ruta.get("/buscarTodos", validacion, roles.esAdmin ,adminControlador.findAll)
 ruta.post("/crearUno" , validacion, roles.esAdmin ,adminControlador.insertOne)
-ruta.put("/actualizar", validacion, roles.esAdmin ,adminControlador.updateOne)
-ruta.delete("/borrar" , validacion, roles.esAdmin ,adminControlador.deleteOne)
+ruta.put("/:id", validacion, roles.esAdmin ,adminControlador.updateOne)
+ruta.delete("/:id" , validacion, roles.esAdmin ,adminControlador.deleteOne)
 
 module.exports = ruta

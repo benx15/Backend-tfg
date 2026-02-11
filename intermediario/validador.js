@@ -17,4 +17,4 @@ function validar(req,res,next) {
     }
 }
 
-module.exports = validacion;
+module.exports = validar;
