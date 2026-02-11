@@ -28,8 +28,16 @@ const eventosSchema = new mongoose.Schema({
     genero:{
         type:String,
         required: true
-    }
-    /* usuarios que van a ese evento*/
+    },
+    descripcion:{
+        type:String
+    },
+    usuarios: [
+        {
+            id: { type: mongoose.Schema.Types.ObjectId, ref: "Usuario", required: true },
+            username: { type: String, required: true }
+        }
+    ],
 });
 
 const Evento = mongoose.model("evento", eventosSchema)

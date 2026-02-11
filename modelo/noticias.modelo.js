@@ -18,7 +18,7 @@ const noticiaSchema = new mongoose.Schema({
     versionKey:false,
     timestamps:true
 })
-
+/* poner Genero*/
 const Noticia = mongoose.model("noticia", noticiaSchema)
 
 module.exports = Noticia
