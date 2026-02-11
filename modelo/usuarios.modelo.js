@@ -48,7 +48,7 @@ const usuarioSchema= new mongoose.Schema({
         enum: ["ADMON","CLIENTE","TRABAJADOR"],
         default: "CLIENTE"
     }
-    /* grupos publicaciones , añadimos descripcion?*/
+    /* grupos si publicaciones si añadimos descripcion si*/
 });
 
 const Usuario = mongoose.model("usuario", usuarioSchema)
