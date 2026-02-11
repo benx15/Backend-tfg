@@ -9,10 +9,11 @@ const rutaGrupos = require("./rutas/grupos.rutas")
 const rutaEventos = require("./rutas/eventos.ruta")
 const cargaDatos = require("./semilla/semilla.datos")
 const rutaAdmin = require("./rutas/admin.ruta")
+const rutaCliente = require("./rutas/cliente.ruta")
 
 //Middleware
 app.use(cors({
-    origin: "http://localhost:4200", // <- frontend permitido
+    origin: "http://localhost:4200", 
     methods: ["GET","POST","PUT","DELETE"],
     credentials: true
 }));
@@ -22,7 +23,9 @@ app.use("/api/noticias" , rutaNoticias)
 app.use("/api/usuarios" , rutaUsuario)
 app.use("/api/grupos" , rutaGrupos)
 app.use("/api/eventos" , rutaEventos)
-app.use("/admin", rutaAdmin)
+app.use("/admin" , rutaAdmin)
+app.use("/cliente" , rutaCliente)
+
 app.get("/" , (req,res) => {
     res.status(200).send("OK")
 })
