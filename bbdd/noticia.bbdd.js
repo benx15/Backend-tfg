@@ -34,3 +34,5 @@ const noticias =
 ];
 
 module.exports = noticias
+
+// en lugar tema cambiar por tematica enum

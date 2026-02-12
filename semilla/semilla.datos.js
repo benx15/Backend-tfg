@@ -66,33 +66,36 @@ class SemillaDatos{
                 console.log("Grupos ya existen")
                 return
             }
-            const cliente = usuarios.find( u => u.username)
-            const gruposUsuario = grupos.map(grupo => ({
+            const usuarioReal = await udao.findOne();
+            const eventoReal = await edao.findOne();
+            const noticiaReal = await ndao.findOne();
+
+            if (!usuarioReal || !eventoReal || !noticiaReal) {
+                console.error("Faltan datos previos (usuarios, eventos o noticias) para crear grupos.");
+                return;
+            }
+
+       
+            const gruposConfigurados = grupos.map(grupo => ({
                 ...grupo,
-                usuarios:[{
-                    id: cliente._id,
-                    username: cliente.username
+                usuarios: [{
+                    id: usuarioReal._id,
+                    username: usuarioReal.username
+                }],
+                eventos: [{
+                    id: eventoReal._id,
+                    nombre: eventoReal.nombre 
+                }],
+                noticias: [{
+                    id: noticiaReal._id,
+                    titular: noticiaReal.titular,
+                    contenido: noticiaReal.contenido
                 }]
-            }))
-            const evento = eventos.find( e => e.nombre)
-            const gruposEvento = grupos.map(grupo => ({
-                ...grupo,
-                eventos:[{
-                    id: evento._id,
-                    username: evento.username
-                }]
-            }))
-            const noticia = noticias.find(f => f.titular && f.contenido)
-            const gruposNoticia = grupos.map(grupos => ({
-                ...grupo,
-                noticias:[{
-                    id: noticia._id,
-                    titular: noticia.titular,
-                    contenido: noticia.contenido
-                }]
-            }))
-            await gdao.insertMany([...gruposUsuario, ...gruposEvento , ...gruposNoticia]);
-            console.log("Grupos cargados")
+            }));
+
+        
+            await gdao.insertMany(gruposConfigurados);
+            console.log("Grupos cargados correctamente con relaciones reales");
         }catch(err){
             console.error("Error en la carga de Grupos", err)
         }
@@ -104,8 +107,38 @@ class SemillaDatos{
                 console.log("Publicaciones ya existen")
                 return
             }
-            await pdao.insertMany(publicaciones)
-            console.log("Publicaciones cargadas")
+            const usuario = await udao.findOne(); 
+            const grupo = await gdao.findOne();  
+
+            if (!usuario || !grupo) {
+                console.error("No se pueden cargar publicaciones: faltan usuarios o grupos en la BD");
+                return;
+            }
+
+            const publicacionesCorregidas = publicaciones.map(pub => {
+           
+                const usuarioReal = usuariosBD.find(u => u.username === pub.autor.username);
+            
+           
+                const grupoReal = gruposBD[0]; 
+
+                if (!usuarioReal) {
+                    console.warn(`No se encontró el usuario ${pub.autor.username} en la base de datos.`);
+                    return null;
+                }
+
+                return {
+                    ...pub,
+                    autor: {
+                        id: usuarioReal._id, 
+                        username: usuarioReal.username
+                    },
+                    grupo: grupoReal ? grupoReal._id : null 
+                };
+            }).filter(p => p !== null); 
+
+            await pdao.insertMany(publicacionesRelacionadas);
+            console.log("Publicaciones cargadas correctamente");
         }catch(err){
             console.error("Error en la carga de Publicaciones", err)
         }
