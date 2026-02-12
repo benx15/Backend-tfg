@@ -35,9 +35,9 @@ mongoose.connect("mongodb://127.0.0.1:27017/bbdd-tfg")
   .then(async () => {
     console.log("MongoDB conectado");
 
-    await cargaDatos.cargaEventos(); 
+    const usuarios = await cargaDatos.cargaUsuarios();
     await cargaDatos.cargaNoticias(); 
-    await cargaDatos.cargaUsuarios(); 
+    await cargaDatos.cargaEventos(usuarios);  
     await cargaDatos.cargaGrupos(); 
     await cargaDatos.cargaPublicaciones(); 
 

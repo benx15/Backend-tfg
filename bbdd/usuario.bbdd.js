@@ -43,7 +43,8 @@ const usuarios =
     "lastName": "Ruiz",
     "age": 31,
     "email": "trabajador02@gmail.com",
-    "rol": "TRABAJADOR"
+    "rol": "TRABAJADOR",
+    "descripcion": "Empleado favorito"
   },
   {
     "username": "cliente03",
@@ -53,6 +54,27 @@ const usuarios =
     "age": 22,
     "email": "cliente03@gmail.com",
     "rol": "CLIENTE"
+  },
+  {
+    "username": "admin02",
+    "password": "admin456",
+    "name": "Pepe",
+    "lastName": "Hernandez",
+    "age": 28,
+    "email": "admin02@gmail.com",
+    "rol": "ADMON",
+    "enabled": true,
+    "descripcion": "Administrador principal del sistema"
+  },
+  {
+    "username": "cliente04",
+    "password": "cliente444",
+    "name": "Mario",
+    "lastName": "Martin",
+    "age": 20,
+    "email": "cliente04@gmail.com",
+    "rol": "CLIENTE",
+    "descripcion": "Me gusta el rock"
   }
 ]
 

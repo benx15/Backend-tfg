@@ -11,6 +11,10 @@ const eventosSchema = new mongoose.Schema({
         required: true,
         min: [20, "NO se adminten precios inferiores"]
     },
+    artista:{
+        type: String,
+        required: true
+    },
     fecha:{
         type:Date,
         required: true,

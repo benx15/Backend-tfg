@@ -15,10 +15,11 @@ class SemillaDatos{
             const total = await udao.countDocuments()
             if(total>0){
                 console.log("Usuarios ya existen")
-                return
+                return await udao.find()
             }
-            await udao.insertMany(usuarios)
+            const usuariosGuardados =await udao.insertMany(usuarios)
             console.log("Usuarios cargados")
+            return usuariosGuardados
         }catch(err){
             console.error("Error en la carga de Usuarios", err)
         }
@@ -28,10 +29,11 @@ class SemillaDatos{
            const total = await ndao.countDocuments()
             if(total>0){
                 console.log("Noticias ya existen")
-                return
+                return await ndao.find()
             }
-            await ndao.insertMany(noticias)
+            const noticiasGuardadas = await ndao.insertMany(noticias)
             console.log("Noticias cargadas")
+            return noticiasGuardadas
         }catch(err){
             console.error("Error en la carga de Noticias", err)
         }
@@ -43,7 +45,15 @@ class SemillaDatos{
                 console.log("Eventos ya existen")
                 return
             }
-            await edao.insertMany(eventos)
+            const cliente = usuarios.find( u => u.username)
+            const eventosUsuario = eventos.map(evento => ({
+                ...evento,
+                usuarios:[{
+                    id: cliente._id,
+                    username: cliente.username
+                }]
+            }))
+            await edao.insertMany(eventosUsuario)
             console.log("Eventos cargados")
         }catch(err){
             console.error("Error en la carga de Eventos", err)
@@ -56,7 +66,32 @@ class SemillaDatos{
                 console.log("Grupos ya existen")
                 return
             }
-            await gdao.insertMany(grupos)
+            const cliente = usuarios.find( u => u.username)
+            const gruposUsuario = grupos.map(grupo => ({
+                ...grupo,
+                usuarios:[{
+                    id: cliente._id,
+                    username: cliente.username
+                }]
+            }))
+            const evento = eventos.find( e => e.nombre)
+            const gruposEvento = grupos.map(grupo => ({
+                ...grupo,
+                eventos:[{
+                    id: evento._id,
+                    username: evento.username
+                }]
+            }))
+            const noticia = noticias.find(f => f.titular && f.contenido)
+            const gruposNoticia = grupos.map(grupos => ({
+                ...grupo,
+                noticias:[{
+                    id: noticia._id,
+                    titular: noticia.titular,
+                    contenido: noticia.contenido
+                }]
+            }))
+            await gdao.insertMany([...gruposUsuario, ...gruposEvento , ...gruposNoticia]);
             console.log("Grupos cargados")
         }catch(err){
             console.error("Error en la carga de Grupos", err)
