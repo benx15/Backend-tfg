@@ -4,7 +4,7 @@ const app = express()
 const cors = require("cors");
 const bodyParser= require("body-parser")
 const rutaNoticias = require("./rutas/noticias.rutas")
-const rutaUsuario = require("./rutas/usuario.rutas")
+const rutaUsuario = require("./rutas/usuarios.rutas")
 const rutaGrupos = require("./rutas/grupos.rutas")
 const rutaEventos = require("./rutas/eventos.ruta")
 const cargaDatos = require("./semilla/semilla.datos")
@@ -35,9 +35,9 @@ mongoose.connect("mongodb://127.0.0.1:27017/bbdd-tfg")
   .then(async () => {
     console.log("MongoDB conectado");
 
-    const usuarios = await cargaDatos.cargaUsuarios();
+    await cargaDatos.cargaUsuarios();
     await cargaDatos.cargaNoticias(); 
-    await cargaDatos.cargaEventos(usuarios);  
+    await cargaDatos.cargaEventos();  
     await cargaDatos.cargaGrupos(); 
     await cargaDatos.cargaPublicaciones(); 
 

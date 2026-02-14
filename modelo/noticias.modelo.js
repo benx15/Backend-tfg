@@ -15,6 +15,10 @@ const noticiaSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    genero:{
+        type:String,
+        required: true
+    }
     
 },{
     versionKey:false,

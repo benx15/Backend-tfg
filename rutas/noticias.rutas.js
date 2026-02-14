@@ -4,6 +4,6 @@ const noticiasControlador = require("../controlador/noticias.controlador")
 
 ruta.get("/carga", noticiasControlador.carga)
 ruta.get("/mostrarTodas", noticiasControlador.buscarTodas)
-ruta.get("mostrarPorTema", noticiasControlador.buscarPorTema)
+ruta.get("/mostrarPorTema/:tema", noticiasControlador.buscarPorTema)
 
 module.exports=ruta

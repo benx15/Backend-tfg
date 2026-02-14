@@ -20,8 +20,8 @@ const publicacionesSchema = new mongoose.Schema({
         username: { type: String, required: true } 
     },
     grupo: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Grupo', required: true 
+        id: { type: mongoose.Schema.Types.ObjectId, ref: "Grupo", required: true },
+        nombre: { type: String, required: true },
     }, 
     respuestas: [{
         contenido: { type: String,  },

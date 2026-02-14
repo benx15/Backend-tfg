@@ -5,6 +5,6 @@ const validacion = require("../intermediario/validador")
 const roles = require("../intermediario/porRoles")
 
 ruta.post("/unirseGrupo" , validacion, roles.esCliente, clienteControlador.agregarUsuarioAGrupo)
-ruta.post("apuntarseEvento" , validacion , roles.esCliente, clienteControlador.agregarUsuarioAEvento)
+ruta.post("/apuntarseEvento" , validacion , roles.esCliente, clienteControlador.agregarUsuarioAEvento)
 
 module.exports= ruta

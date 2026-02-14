@@ -87,4 +87,4 @@ class UsuarioControlador{
 
 }
 
-module.exports= new UsuarioControlador
+module.exports= new UsuarioControlador()

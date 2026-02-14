@@ -25,7 +25,7 @@ class NoticiasControlador{
     }
     async buscarPorTema(req, res){
         try{
-            const result = await ndao.find({tema: req.params.tema})
+            const result = await ndao.find({tematica: req.params.tematica})
             return res.status(200).send(result)
         }catch(err){
             console.error("Error en buscar por tema", err)

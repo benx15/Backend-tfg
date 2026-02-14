@@ -1,7 +1,7 @@
 const udao = require("../modelo/usuarios.modelo")
-const usuarios = require("../bbdd/usuario.bbdd")
+const usuarios = require("../bbdd/usuarios.bbdd")
 const ndao = require("../modelo/noticias.modelo")
-const noticias = require("../bbdd/noticia.bbdd")
+const noticias = require("../bbdd/noticias.bbdd")
 const edao = require("../modelo/eventos.modelo")
 const eventos = require("../bbdd/eventos.bbdd")
 const gdao = require("../modelo/grupos.modelo")
@@ -45,7 +45,11 @@ class SemillaDatos{
                 console.log("Eventos ya existen")
                 return
             }
-            const cliente = usuarios.find( u => u.username)
+            const cliente = usuarios.find()
+            if (!cliente) {
+                console.error("No se encontró ningún usuario en la BD para asignar a eventos")
+                return
+            }
             const eventosUsuario = eventos.map(evento => ({
                 ...evento,
                 usuarios:[{
@@ -107,23 +111,19 @@ class SemillaDatos{
                 console.log("Publicaciones ya existen")
                 return
             }
-            const usuario = await udao.findOne(); 
-            const grupo = await gdao.findOne();  
+            const usuarios = await udao.find(); 
+            const grupo = await gdao.find();  
 
-            if (!usuario || !grupo) {
-                console.error("No se pueden cargar publicaciones: faltan usuarios o grupos en la BD");
+            if (!usuarios.length || !grupo.length) {
+                console.error("No se pueden cargar publicaciones: faltan usuarios o el grupo en la BD");
                 return;
             }
 
             const publicacionesCorregidas = publicaciones.map(pub => {
-           
-                const usuarioReal = usuariosBD.find(u => u.username === pub.autor.username);
-            
-           
-                const grupoReal = gruposBD[0]; 
+                const usuarioReal = usuarios.find(u => u.username === pub.autor.username);
 
                 if (!usuarioReal) {
-                    console.warn(`No se encontró el usuario ${pub.autor.username} en la base de datos.`);
+                    console.log(`No se encontró el usuario ${pub.autor.username} en la base de datos.`);
                     return null;
                 }
 
@@ -133,12 +133,15 @@ class SemillaDatos{
                         id: usuarioReal._id, 
                         username: usuarioReal.username
                     },
-                    grupo: grupoReal ? grupoReal._id : null 
+                    grupo: grupo._id 
                 };
             }).filter(p => p !== null); 
 
-            await pdao.insertMany(publicacionesRelacionadas);
+       
+            
+            await pdao.insertMany(publicacionesCorregidas);
             console.log("Publicaciones cargadas correctamente");
+            
         }catch(err){
             console.error("Error en la carga de Publicaciones", err)
         }

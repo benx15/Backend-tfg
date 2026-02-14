@@ -63,7 +63,6 @@ const usuarios =
     "age": 28,
     "email": "admin02@gmail.com",
     "rol": "ADMON",
-    "enabled": true,
     "descripcion": "Administrador principal del sistema"
   },
   {
@@ -75,7 +74,43 @@ const usuarios =
     "email": "cliente04@gmail.com",
     "rol": "CLIENTE",
     "descripcion": "Me gusta el rock"
-  }
+  },
+  {
+  "username": "cliente05",
+  "password": "cliente456",
+  "name": "Lucía",
+  "lastName": "Martínez",
+  "age": 27,
+  "email": "cliente05@gmail.com",
+  "rol": "CLIENTE"
+},
+{
+  "username": "cliente06",
+  "password": "cliente789",
+  "name": "David",
+  "lastName": "López",
+  "age": 35,
+  "email": "cliente06@gmail.com",
+  "rol": "CLIENTE"
+},
+{
+  "username": "cliente07",
+  "password": "cliente321",
+  "name": "Ana",
+  "lastName": "Sánchez",
+  "age": 24,
+  "email": "cliente07@gmail.com",
+  "rol": "CLIENTE"
+},
+{
+  "username": "cliente08",
+  "password": "cliente654",
+  "name": "Javier",
+  "lastName": "Ruiz",
+  "age": 29,
+  "email": "cliente08@gmail.com",
+  "rol": "CLIENTE"
+}
 ]
 
 module.exports= usuarios

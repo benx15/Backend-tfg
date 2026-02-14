@@ -1,6 +1,6 @@
 const express = require("express")
 const ruta = express.Router()
-const usuarioControlador = require("../controlador/usuario.controlador")
+const usuarioControlador = require("../controlador/usuarios.controlador")
 
 ruta.get("/cargaInicial", usuarioControlador.cargaInicial) 
 ruta.post("/login" , usuarioControlador.login)

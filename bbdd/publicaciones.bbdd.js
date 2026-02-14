@@ -1,4 +1,4 @@
-const publicaiones =
+const publicaciones =
 [
   {
     "titulo": "Mi primer post en la plataforma",
@@ -6,9 +6,11 @@ const publicaiones =
     "fecha": "2024-12-01T10:30:00.000Z",
     "autor": {
 
-      "username": "cliente01"
+      "username": "cliente03"
     },
-    "grupo": "",
+    "grupo": {
+      "nombre": "The Stones lovers",
+    },
     "respuestas": []
   },
   {
@@ -17,9 +19,12 @@ const publicaiones =
     "fecha": "2024-12-03T19:45:00.000Z",
     "autor": {
 
-      "username": "cliente02"
+      "username": "cliente04"
     },
-    "grupo": "",
+    "grupo": {
+      "nombre": "Amantes del Jazz"
+    },
+
     "respuestas": []
   },
   {
@@ -30,7 +35,9 @@ const publicaiones =
       
       "username": "cliente03"
     },
-    "grupo": "",
+    "grupo": {
+      "nombre": "Beyoncé fans"
+    },
     "respuestas": []
   },
   {
@@ -38,10 +45,11 @@ const publicaiones =
     "contenido": "Este mes hay varios eventos interesantes, no os perdáis el del día 20.",
     "fecha": "2024-12-08T09:00:00.000Z",
     "autor": {
-      "id": "",
-      "username": "cliente01"
+      "username": "cliente04"
     },
-    "grupo": "",
+    "grupo": {
+      "nombre": "Coldplay followers",
+    },
     "respuestas": []
   },
   {
@@ -49,12 +57,13 @@ const publicaiones =
     "contenido": "La aplicación es muy intuitiva y fácil de usar, enhorabuena al equipo.",
     "fecha": "2024-12-10T18:20:00.000Z",
     "autor": {
-
-      "username": "cliente02"
+      "username": "cliente04"
     },
-    "grupo": "",
+    "grupo": {
+      "nombre": "Electicity"
+    },
     "respuestas": []
   }
 ]
 
-module.exports=publicaiones
+module.exports=publicaciones
