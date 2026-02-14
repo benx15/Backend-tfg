@@ -2,7 +2,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const ruta = express.Router()
 const ndao = require("../modelo/noticias.modelo")
-const noticias = require("../bbdd/noticia.bbdd")
+const noticias = require("../bbdd/noticias.bbdd")
 
 class NoticiasControlador{
     async carga(req,res){

@@ -2,7 +2,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const ruta = express.Router()
 const udao = require("../modelo/usuarios.modelo")
-const usuarios = require("../bbdd/usuario.bbdd")
+const usuarios = require("../bbdd/usuarios.bbdd")
 
 class AdminControlador{
     async findAll(req, res){

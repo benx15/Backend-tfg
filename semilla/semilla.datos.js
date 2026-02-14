@@ -45,19 +45,28 @@ class SemillaDatos{
                 console.log("Eventos ya existen")
                 return
             }
-            const cliente = usuarios.find()
-            if (!cliente) {
+            const cliente = await udao.find()
+            if (!cliente || cliente.length === 0) {
                 console.error("No se encontró ningún usuario en la BD para asignar a eventos")
                 return
             }
-            const eventosUsuario = eventos.map(evento => ({
-                ...evento,
-                usuarios:[{
-                    id: cliente._id,
-                    username: cliente.username
-                }]
-            }))
-            await edao.insertMany(eventosUsuario)
+            const eventosUsuarios = eventos.map(evento => {
+                const usuariosEvento = evento.usuarios.map(u => {
+                    const usuarioReal = cliente.find(c => c.username === u.username)
+                    if (usuarioReal) {
+                        return {
+                            id: usuarioReal._id,
+                            username: usuarioReal.username
+                        }
+                    }
+                }).filter(u => u !== undefined)
+
+                return {
+                    ...evento,
+                    usuarios: usuariosEvento
+                }
+            })
+            await edao.insertMany(eventosUsuarios)
             console.log("Eventos cargados")
         }catch(err){
             console.error("Error en la carga de Eventos", err)
@@ -70,32 +79,59 @@ class SemillaDatos{
                 console.log("Grupos ya existen")
                 return
             }
-            const usuarioReal = await udao.findOne();
-            const eventoReal = await edao.findOne();
-            const noticiaReal = await ndao.findOne();
+            const usuariosBD  = await udao.find();
+            const eventosBD  = await edao.find();
+            const noticiasBD  = await ndao.find();
 
-            if (!usuarioReal || !eventoReal || !noticiaReal) {
+            if (!usuariosBD.length || !eventosBD.length || !noticiasBD.length) {
                 console.error("Faltan datos previos (usuarios, eventos o noticias) para crear grupos.");
                 return;
             }
 
-       
-            const gruposConfigurados = grupos.map(grupo => ({
-                ...grupo,
-                usuarios: [{
-                    id: usuarioReal._id,
-                    username: usuarioReal.username
-                }],
-                eventos: [{
-                    id: eventoReal._id,
-                    nombre: eventoReal.nombre 
-                }],
-                noticias: [{
-                    id: noticiaReal._id,
-                    titular: noticiaReal.titular,
-                    contenido: noticiaReal.contenido
-                }]
-            }));
+            const gruposConfigurados = grupos.map(grupo => {
+                
+                const usuariosGrupo = grupo.usuarios.map(u => {
+                    const usuarioReal = usuariosBD.find(ubd => ubd.username === u.username)
+                    if (usuarioReal) {
+                        return {
+                            id: usuarioReal._id,
+                            username: usuarioReal.username
+                        }
+                    }
+                }).filter(u => u !== undefined)
+
+                
+                const eventosGrupo = grupo.eventos.map(e => {
+                    const eventoReal = eventosBD.find(ebd => ebd.nombre === e.nombre)
+                    if (eventoReal) {
+                        return {
+                            id: eventoReal._id,
+                            nombre: eventoReal.nombre
+                        }
+                    }
+                }).filter(e => e !== undefined)
+
+                
+                const noticiasGrupo = grupo.noticias.map(n => {
+                    const noticiaReal = noticiasBD.find(nbd => nbd.titular === n.titular)
+                    if (noticiaReal) {
+                        return {
+                            id: noticiaReal._id,
+                            titular: noticiaReal.titular,
+                            contenido: noticiaReal.contenido
+                        }
+                    }
+                }).filter(n => n !== undefined)
+
+                return {
+                    nombre: grupo.nombre,
+                    cantidad: grupo.cantidad,
+                    genero: grupo.genero,
+                    usuarios: usuariosGrupo,
+                    eventos: eventosGrupo,
+                    noticias: noticiasGrupo
+                }
+            })
 
         
             await gdao.insertMany(gruposConfigurados);
@@ -111,31 +147,44 @@ class SemillaDatos{
                 console.log("Publicaciones ya existen")
                 return
             }
-            const usuarios = await udao.find(); 
-            const grupo = await gdao.find();  
+             const usuariosBD = await udao.find()
+             const gruposBD = await gdao.find()
 
-            if (!usuarios.length || !grupo.length) {
+            if (!usuariosBD.length || !gruposBD.length) {
                 console.error("No se pueden cargar publicaciones: faltan usuarios o el grupo en la BD");
                 return;
             }
 
             const publicacionesCorregidas = publicaciones.map(pub => {
-                const usuarioReal = usuarios.find(u => u.username === pub.autor.username);
+                const usuarioReal = usuariosBD.find(u => u.username === pub.autor.username);
+
+                const grupoReal = gruposBD.find(g => g.nombre === pub.grupo.nombre)
 
                 if (!usuarioReal) {
-                    console.log(`No se encontró el usuario ${pub.autor.username} en la base de datos.`);
-                    return null;
+                    console.log(`No se encontró el usuario ${pub.autor.username} en la base de datos.`)
+                    return null
+                }
+
+                if (!grupoReal) {
+                    console.log(`No se encontró el grupo ${pub.grupo.nombre} en la base de datos.`)
+                    return null
                 }
 
                 return {
-                    ...pub,
+                    titulo: pub.titulo,
+                    contenido: pub.contenido,
+                    fecha: pub.fecha,
                     autor: {
-                        id: usuarioReal._id, 
+                        id: usuarioReal._id,
                         username: usuarioReal.username
                     },
-                    grupo: grupo._id 
-                };
-            }).filter(p => p !== null); 
+                    grupo: {
+                        id: grupoReal._id,
+                        nombre: grupoReal.nombre
+                    },
+                    respuestas: pub.respuestas || []
+                }
+            }).filter(p => p !== null)
 
        
             
@@ -144,6 +193,19 @@ class SemillaDatos{
             
         }catch(err){
             console.error("Error en la carga de Publicaciones", err)
+        }
+    }
+    async cargarTodosDatos(){
+        try{
+            console.log("Iniciando carga de datos...")
+            await this.cargaUsuarios()
+            await this.cargaNoticias()
+            await this.cargaEventos()
+            await this.cargaGrupos()
+            await this.cargaPublicaciones()
+            console.log("Todos los datos han sido cargados exitosamente")
+        }catch(err){
+            console.error("Error al cargar todos los datos:", err)
         }
     }
 }

@@ -35,11 +35,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/bbdd-tfg")
   .then(async () => {
     console.log("MongoDB conectado");
 
-    await cargaDatos.cargaUsuarios();
-    await cargaDatos.cargaNoticias(); 
-    await cargaDatos.cargaEventos();  
-    await cargaDatos.cargaGrupos(); 
-    await cargaDatos.cargaPublicaciones(); 
+    await cargaDatos.cargarTodosDatos();
 
     app.listen(3000, () => {
       console.log("Node arrancado por el puerto 3000");

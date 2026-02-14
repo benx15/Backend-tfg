@@ -160,7 +160,7 @@ const eventos =
     "descripcion": "Evento especial con lo mejor del rock alternativo.",
     "usuarios": []
   },
-  [
+  
   {
     "nombre": "Deep House Sessions: Rooftop Edition",
     "precio": 35,
@@ -185,7 +185,7 @@ const eventos =
   },
   {
     "nombre": "Ambient Night: Modular Synths",
-    "precio": 15,
+    "precio": 23,
     "artista": "Echo Voyager",
     "fecha": "2026-11-20T21:00:00Z",
     "aforo": 150,
@@ -194,7 +194,7 @@ const eventos =
     "descripcion": "Sesión de escucha experimental enfocada en la síntesis modular y paisajes sonoros envolventes.",
     "usuarios": []
   }
-]
+
 ]
 
 module.exports=eventos
