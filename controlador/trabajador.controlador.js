@@ -60,7 +60,7 @@ class TrabajadorControlador{
             return res.status(500).json({mensaje: "Error general, ver consola"})
         }
     }
-    async mostrarEventos(res,res){
+    async mostrarEventos(req,res){
         try{
             const result = await edao.find()
             return res.status(200).send(result)
@@ -91,7 +91,7 @@ class TrabajadorControlador{
             return res.status(500).json({mensaje: "Error interno"})
         }
     }
-    async actualizarEvento(res,res){
+    async actualizarEvento(req,res){
         try{
             const evento = req.body;
             const eventoActualizado = await edao.findByIdAndUpdate(req.params.id, evento, {new: true})
@@ -107,7 +107,7 @@ class TrabajadorControlador{
     async actualizarGrupo(req,res){
         try{
             const grupo = req.body;
-            const grupoActualizado = await ndao.findByIdAndUpdate(req.params.id, grupo, {new: true})
+            const grupoActualizado = await gdao.findByIdAndUpdate(req.params.id, grupo, {new: true})
             if(!grupoActualizado){
                 return res.status(404).send("Grupo no existe")
             }
