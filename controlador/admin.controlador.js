@@ -3,6 +3,8 @@ const mongoose = require("mongoose")
 const ruta = express.Router()
 const udao = require("../modelo/usuarios.modelo")
 const usuarios = require("../bbdd/usuarios.bbdd")
+const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
 
 class AdminControlador{
     async findAll(req, res){
@@ -16,8 +18,12 @@ class AdminControlador{
     }
     async insertOne(req,res){
         try{
-            const usuario = req.body;
-            const usuarioNuevo= new udao(usuario);
+            const {password, ...usuario} = req.body;
+            const passwordHash = await bcrypt.hash(password, 10);
+            const usuarioNuevo = new udao({
+                ...usuario,
+                password: passwordHash
+            });
             const result = await usuarioNuevo.save();
             if(!usuarioNuevo){
                 return res.status(404).send("No se ha podido crear usuario")
