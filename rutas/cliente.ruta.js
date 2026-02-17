@@ -8,7 +8,7 @@ ruta.post("/unirseGrupo" , validacion, roles.esCliente, clienteControlador.agreg
 ruta.post("/apuntarseEvento" , validacion , roles.esCliente, clienteControlador.agregarUsuarioAEvento)
 ruta.post("/publicar", validacion, roles.esCliente, clienteControlador.crearPost)
 ruta.post("/respuesta" , validacion, roles.esCliente, clienteControlador.respuestaPost)
-ruta.get("/misPosts", validacion, roles.esCliente, clienteControlador.verMisPosts)
-ruta.get("/misRespuestas", validacion, roles.esCliente, clienteControlador.verMisRespustas)
+ruta.get("/misPosts/:id", validacion, roles.esCliente, clienteControlador.verMisPosts)
+ruta.get("/misRespuestas/:id", validacion, roles.esCliente, clienteControlador.verMisRespustas)
 
 module.exports= ruta
