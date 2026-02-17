@@ -8,7 +8,7 @@ const grupoSchema = new mongoose.Schema({
     },
     cantidad:{
         type: Number,
-        required: true,
+        default: 2,
         min: [2, "No se aceptan grupos con menos de 2 personas "]
     },
     genero:{
@@ -34,7 +34,16 @@ const grupoSchema = new mongoose.Schema({
             contenido: { type: String, required: true }
         }
     ],
-    /*usuarios[]/no  eventos?si  noticias? si post si  */
+    
+});
+grupoSchema.pre("save", function (next) {
+    this.cantidad = this.usuarios.length;
+
+    if (this.cantidad < 2) {
+        return next(new Error("No se aceptan grupos con menos de 2 personas"));
+    }
+
+    next();
 });
 
 const Grupo =  mongoose.model("grupo" , grupoSchema)
