@@ -32,7 +32,29 @@ class NoticiasControlador{
             return res.status(500).json({mensaje: "Error general, ver consola"})
         }
     }
+    async buscarPorTitular(req, res){
+        try{
+            const { search } = req.query
+            const filtro = {}
+            if(search){
+                filtro.titular = { $regex: search, $options: 'i' }
+            }
+            const result = await ndao.find(filtro)
+            return res.status(200).send(result)
+        }catch(err){
+            console.error("Error en buscar por titular", err)
+            return res.status(500).json({mensaje: "Error general, ver consola"})
+        }
+    }
+    async obtenerTematicas(req, res){
+        try{
+            const tematicas = ["Grupos","Quedadas","Album o EP" , "Otros"]
+            return res.status(200).json(tematicas)
+        }catch(err){
+            console.error("Error al obtener temáticas", err)
+            return res.status(500).json({mensaje: "Error general, ver consola"})
+        }
+    }
 }
 
 module.exports=  new NoticiasControlador();
-/* luego si eso hacer tambien un autocompletado por titular en el buscador*/
