@@ -18,6 +18,10 @@ const noticiaSchema = new mongoose.Schema({
     genero:{
         type:String,
         required: true
+    },
+    fecha:{
+        type: Date,
+        default: Date.now
     }
     
 },{

@@ -8,6 +8,9 @@ const gdao = require("../modelo/grupos.modelo")
 const grupos = require("../bbdd/grupos.bbdd")
 const pdao = require("../modelo/publicaciones.modelo")
 const publicaciones = require("../bbdd/publicaciones.bbdd")
+const bcrypt = require("bcrypt")
+const adao = require("../modelo/artistas.modelo")
+const artistas = require("../bbdd/artistas.bbdd")
 
 class SemillaDatos{
     async cargaUsuarios(){
@@ -17,7 +20,13 @@ class SemillaDatos{
                 console.log("Usuarios ya existen")
                 return await udao.find()
             }
-            const usuariosGuardados =await udao.insertMany(usuarios)
+            const usuariosEncriptados = await Promise.all(
+                usuarios.map(async (usuario) => ({
+                    ...usuario,
+                    password: await bcrypt.hash(usuario.password, 10)
+                }))
+            )
+            const usuariosGuardados =await udao.insertMany(usuariosEncriptados)
             console.log("Usuarios cargados")
             return usuariosGuardados
         }catch(err){
@@ -50,7 +59,12 @@ class SemillaDatos{
                 console.error("No se encontró ningún usuario en la BD para asignar a eventos")
                 return
             }
-            const eventosUsuarios = eventos.map(evento => {
+            const artistasBD = await adao.find()
+            if (!artistasBD || artistasBD.length === 0) {
+                console.error("No se encontró ningún artista en la BD para asignar a eventos")
+                return
+            }
+            const eventosConfigurados = eventos.map(evento => {
                 const usuariosEvento = evento.usuarios.map(u => {
                     const usuarioReal = cliente.find(c => c.username === u.username)
                     if (usuarioReal) {
@@ -61,13 +75,25 @@ class SemillaDatos{
                     }
                 }).filter(u => u !== undefined)
 
+                const artistasEvento = evento.artista.map(a => {
+                    const artistaReal = artistasBD.find(ab => ab.nombreArtistico === a.nombreArtistico)
+                    if (artistaReal) {
+                        return {
+                            id: artistaReal._id,
+                            nombreArtistico: artistaReal.nombreArtistico
+                        }
+                    }
+                }).filter(a => a !== undefined)
+    
                 return {
                     ...evento,
-                    usuarios: usuariosEvento
+                    usuarios: usuariosEvento,
+                    artista: artistasEvento
                 }
             })
-            await edao.insertMany(eventosUsuarios)
+            const eventosGuardados = await edao.insertMany(eventosConfigurados)
             console.log("Eventos cargados")
+            return eventosGuardados
         }catch(err){
             console.error("Error en la carga de Eventos", err)
         }
@@ -134,8 +160,9 @@ class SemillaDatos{
             })
 
         
-            await gdao.insertMany(gruposConfigurados);
+            const gruposGuardados= await gdao.insertMany(gruposConfigurados);
             console.log("Grupos cargados correctamente con relaciones reales");
+            return gruposGuardados
         }catch(err){
             console.error("Error en la carga de Grupos", err)
         }
@@ -188,18 +215,34 @@ class SemillaDatos{
 
        
             
-            await pdao.insertMany(publicacionesCorregidas);
+            const publicacionesGuardadas=await pdao.insertMany(publicacionesCorregidas);
             console.log("Publicaciones cargadas correctamente");
+            return publicacionesGuardadas
             
         }catch(err){
             console.error("Error en la carga de Publicaciones", err)
         }
     }
+    async cargaArtistas(){
+        try{
+            const total = await adao.countDocuments()
+            if(total>0){
+                console.log("Artistas ya existen")
+                return
+            }
+            const artistasGuardados = await adao.insertMany(artistas)
+            console.log("Artistas cargados")
+            return artistasGuardados
+        }catch(err){
+            console.error("Error en la carga de Artistas", err)
+        }
+    }
     async cargarTodosDatos(){
         try{
-            console.log("Iniciando carga de datos...")
+            console.log("Cargando de datos...")
             await this.cargaUsuarios()
             await this.cargaNoticias()
+            await this.cargaArtistas()
             await this.cargaEventos()
             await this.cargaGrupos()
             await this.cargaPublicaciones()

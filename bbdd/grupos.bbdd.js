@@ -2,11 +2,12 @@ const grupos =
 [
   {
     "nombre": "The Stones lovers",
-    "cantidad": 5,
+
     "genero": "Rock",
     "usuarios": [
       { "username": "cliente03" },
-      { "username": "cliente04" }
+      { "username": "cliente04" },
+      { "username": "cliente06" }
     ],
     "eventos": [
       {"nombre": "Concierto Rock Estelar"},
@@ -26,7 +27,7 @@ const grupos =
   },
   {
     "nombre": "Beyoncé fans",
-    "cantidad": 4,
+    
     "genero": "Pop",
     "usuarios": [
       { "username": "cliente03" },
@@ -49,7 +50,7 @@ const grupos =
   },
   {
     "nombre": "Coldplay followers",
-    "cantidad": 4,
+ 
     "genero": "Rock Alternativo",
     "usuarios": [
       { "username": "cliente03" },
@@ -72,7 +73,7 @@ const grupos =
   },
   {
     "nombre": "Electicity",
-    "cantidad": 2,
+ 
     "genero": "Electrónica",
     "usuarios": [
       { "username": "cliente03" },
@@ -95,7 +96,7 @@ const grupos =
   },
   {
     "nombre": "Amantes del Jazz",
-    "cantidad": 6,
+  
     "genero": "Jazz",
     "usuarios": [
       { "username": "cliente03" },
@@ -113,7 +114,7 @@ const grupos =
   },
   {
     "nombre": "Boy Band",
-    "cantidad": 5,
+
     "genero": "Pop",
     "usuarios": [
       { "username": "cliente03" },
