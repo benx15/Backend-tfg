@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const moment = require("moment-timezone")
 
 const usuarioSchema= new mongoose.Schema({
     username: {
@@ -50,12 +51,17 @@ const usuarioSchema= new mongoose.Schema({
     },
     fechaRegistro:{
         type: Date,
-        default: Date.now
+        default: Date.now,
+        get: (fecha) => moment(fecha).tz("Europe/Madrid").format("DD/MM/YYYY HH:mm")
     },
     descripcion:{
         type: String
     }
-    /* grupos publicaciones , añadimos descripcion?*/
+    
+},{
+    versionKey:false,
+    timestamps:true,
+    toJSON: { getters: true }
 });
 
 const Usuario = mongoose.model("usuario", usuarioSchema)

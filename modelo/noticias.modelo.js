@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const moment = require("moment-timezone")
 
 const noticiaSchema = new mongoose.Schema({
     titular:{
@@ -21,14 +22,16 @@ const noticiaSchema = new mongoose.Schema({
     },
     fecha:{
         type: Date,
-        default: Date.now
+        default: Date.now,
+        get: (fecha) => moment(fecha).tz("Europe/Madrid").format("DD/MM/YYYY HH:mm")
     }
     
 },{
     versionKey:false,
-    timestamps:true
+    timestamps:true,
+    toJSON: { getters: true }
 })
-/* poner Genero*/
+
 const Noticia = mongoose.model("noticia", noticiaSchema)
 
 module.exports = Noticia

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const moment = require("moment-timezone")
 
 const publicacionesSchema = new mongoose.Schema({
     titulo:{
@@ -13,7 +14,8 @@ const publicacionesSchema = new mongoose.Schema({
     fecha:{
         type:Date,
         required: true,
-        default: Date.now
+        default: Date.now,
+        get: (fecha) => moment(fecha).tz("Europe/Madrid").format("DD/MM/YYYY HH:mm")
     },
     autor: {
         id: { type: mongoose.Schema.Types.ObjectId, ref: 'Usuario', required: true }, 
@@ -31,7 +33,11 @@ const publicacionesSchema = new mongoose.Schema({
         },
         fechaPublicacion: { type: Date, default: Date.now }
     }]
-    /* respuesta hecho*/
+    
+},{
+    versionKey:false,
+    timestamps:true,
+    toJSON: { getters: true }
 });
 
 const Publicacion = mongoose.model("publicacione", publicacionesSchema)
