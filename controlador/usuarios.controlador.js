@@ -5,6 +5,7 @@ const udao = require("../modelo/usuarios.modelo")
 const usuarios = require("../bbdd/usuarios.bbdd")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
+const gdao = require("../modelo/grupos.modelo")
 
 class UsuarioControlador{
   async cargaInicial(req,res){
@@ -48,7 +49,9 @@ class UsuarioControlador{
       if (!passwordCorrecta) {
       return res.status(401).json({ mensaje: "Contraseña incorrecta" });
     }
-         
+        
+      const grupo = await gdao.findOne({ "usuarios.id": usuario._id });
+      
       const token = jwt.sign(
         { id: usuario._id, rol: usuario.rol },
         "CLAVE_SECRETA",
@@ -57,7 +60,8 @@ class UsuarioControlador{
       return res.status(200).json({
         token,
         rol: usuario.rol,
-        nombre: usuario.name
+        nombre: usuario.name,
+        grupo: grupo ? grupo._id : null
       });
 
     }catch(err){
