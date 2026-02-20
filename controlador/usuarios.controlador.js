@@ -39,24 +39,16 @@ class UsuarioControlador{
     try{
       const { username, password } = req.body;
       const usuario = await udao.findOne({ username }).select("+password");
+
       if (!usuario) {
         return res.status(401).json({ mensaje: "Usuario incorrecto" });
       }
-      let passwordCorrecta = false;
-         
-      if (usuario.password.startsWith("$2")) {
-        passwordCorrecta = await bcrypt.compare(password, usuario.password);
-      } 
-      else {
-        passwordCorrecta = password === usuario.password;
-        if (passwordCorrecta) {
-          usuario.password = await bcrypt.hash(password, 10);
-          await usuario.save();
-        }
-      }
+      const passwordCorrecta = await bcrypt.compare(password, usuario.password);
+
       if (!passwordCorrecta) {
-        return res.status(401).json({ mensaje: "Contraseña incorrecta" });
-      }
+      return res.status(401).json({ mensaje: "Contraseña incorrecta" });
+    }
+         
       const token = jwt.sign(
         { id: usuario._id, rol: usuario.rol },
         "CLAVE_SECRETA",
