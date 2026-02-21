@@ -36,14 +36,11 @@
         ],
         
     });
-    grupoSchema.pre("save", function (next) {
+    grupoSchema.pre("save", async function () {
+       
         this.cantidad = this.usuarios.length;
 
-        if (this.cantidad < 2) {
-            return next(new Error("No se aceptan grupos con menos de 2 personas"));
-        }
-
-        next();
+       
     });
 
     const Grupo =  mongoose.model("grupo" , grupoSchema)
