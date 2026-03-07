@@ -5,11 +5,12 @@ const udao = require("../modelo/usuarios.modelo")
 const gdao = require("../modelo/grupos.modelo")
 const edao = require("../modelo/eventos.modelo")
 const pdao = require("../modelo/publicaciones.modelo")
+const adao = require("../modelo/artistas.modelo")
 
 class ClienteControlador{
     async  agregarUsuarioAGrupo(req, res) {
         try{
-           const { usuarioId, grupoId } = req.body;
+            const { usuarioId, grupoId } = req.body;
 
             const usuario = await udao.findById(usuarioId);
             if (!usuario) {
@@ -35,8 +36,8 @@ class ClienteControlador{
         }
     }
     async  agregarUsuarioAEvento(req,res){
-         try{
-           const { usuarioId, eventoId } = req.body;
+        try{
+            const { usuarioId, eventoId } = req.body;
 
             const usuario = await udao.findById(usuarioId);
             if (!usuario) {
@@ -181,7 +182,7 @@ class ClienteControlador{
                 return res.status(404).json({ mensaje: "Usuario no encontrado" });
             }
 
-         
+
             const publicaciones = await pdao.find({ 
                 "respuestas.autor.id": usuarioId 
             }).sort({ fecha: -1 });
@@ -216,6 +217,66 @@ class ClienteControlador{
             console.error("Error al obtener respuestas del usuario", err);
             return res.status(500).json({mensaje: "Error general, ver consola"});
         }
+    }
+    async guardarArtistas(req,res){
+        try{
+            const { usuarioId, artistasId} = req.body
+
+            if(!usuarioId || !artistasId){
+                return res.status(400).json({mensaje: "Faltan campos requeridos: usuarioId, artistaId"})
+            }
+
+            const usuario = await udao.findById(usuarioId);
+            if(!usuario){
+                return res.status(404).json({ mensaje: "Usuario no encontrado" })
+            }
+
+            const artista = await udao.findById(artistaId);
+            if(!artista){
+                return res.status(404).json({ mensaje: "Artista no encontrado" })
+            }
+
+            const yaGuardado = usuario.artistas?.some(
+                a => a.id.toString() === artistaId
+            )
+            if(yaGuardado){
+                return res.status(400).json({ mensaje: "El artista ya está guardado" })
+            }
+
+            usuario.artistas.push({
+                id: artista._id,
+                nombreArtistico: artista.nombreArtistico
+            })
+
+            await usuario.save()
+
+            res.status(201).json({mensaje: "Artista guardado correctamente" })
+        }catch (err) {
+            console.error("Error al guardar artista", err);
+            return res.status(500).json({ mensaje: "Error general, ver consola" });
+        }
+    }
+    async verMisArtistas(req,res){
+        try{
+            const {usuarioId} = req.params
+            const usuario = await udao.findById(usuarioId)
+
+            if(!usuario){
+                return res.status(404).json({ mensaje: "Usuario no encontrado" })
+            }
+
+            const artistas = usuario.artistas || []
+
+            res.json({
+                mensaje: "Artistas Favoritos",
+                total: artistas.length,
+                artistas: artistas
+            })
+
+        }catch(err) {
+            console.error("Error al obtener artistas del usuario", err);
+            return res.status(500).json({ mensaje: "Error general, ver consola" });
+    }
     }
 }
 

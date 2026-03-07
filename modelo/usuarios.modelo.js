@@ -56,7 +56,13 @@ const usuarioSchema= new mongoose.Schema({
     },
     descripcion:{
         type: String
-    }
+    },
+    artistas: [
+        {
+            id: {type: mongoose.Schema.Types.ObjectId, ref: "artista"},
+            nombreArtistico: {type:String}
+        }
+    ]
     
 },{
     versionKey:false,

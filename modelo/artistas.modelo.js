@@ -13,7 +13,7 @@ const artistasSchema = new mongoose.Schema({
         type:String,
         required: true
     }
-  
+    
 })
 
 const Artista = mongoose.model("artista", artistasSchema)
