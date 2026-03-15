@@ -35,7 +35,7 @@ class SemillaDatos{
     }
     async cargaNoticias(){
         try{
-           const total = await ndao.countDocuments()
+            const total = await ndao.countDocuments()
             if(total>0){
                 console.log("Noticias ya existen")
                 return await ndao.find()
@@ -174,8 +174,8 @@ class SemillaDatos{
                 console.log("Publicaciones ya existen")
                 return
             }
-             const usuariosBD = await udao.find()
-             const gruposBD = await gdao.find()
+            const usuariosBD = await udao.find()
+            const gruposBD = await gdao.find()
 
             if (!usuariosBD.length || !gruposBD.length) {
                 console.error("No se pueden cargar publicaciones: faltan usuarios o el grupo en la BD");
@@ -213,7 +213,7 @@ class SemillaDatos{
                 }
             }).filter(p => p !== null)
 
-       
+
             
             const publicacionesGuardadas=await pdao.insertMany(publicacionesCorregidas);
             console.log("Publicaciones cargadas correctamente");

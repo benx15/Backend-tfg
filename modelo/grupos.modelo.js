@@ -37,10 +37,10 @@
         
     });
     grupoSchema.pre("save", async function () {
-       
+    
         this.cantidad = this.usuarios.length;
 
-       
+
     });
 
     const Grupo =  mongoose.model("grupo" , grupoSchema)

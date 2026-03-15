@@ -24,6 +24,10 @@ const noticiaSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
         get: (fecha) => moment(fecha).tz("Europe/Madrid").format("DD/MM/YYYY HH:mm")
+    },
+    autor:{
+        id:{type: mongoose.Schema.Types.ObjectId, ref: "Usuario" , required: true},
+        name:{type: String, required: true}
     }
     
 },{

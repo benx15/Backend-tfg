@@ -110,6 +110,44 @@ const usuarios =
   "age": 29,
   "email": "cliente08@gmail.com",
   "rol": "CLIENTE"
+},
+{
+  "username": "trabajador03",
+  "password": "trabajador789",
+  "name": "Sergio",
+  "lastName": "Navarro",
+  "age": 33,
+  "email": "trabajador03@gmail.com",
+  "rol": "TRABAJADOR"
+},
+{
+  "username": "trabajador04",
+  "password": "trabajador321",
+  "name": "Alberto",
+  "lastName": "Torres",
+  "age": 27,
+  "email": "trabajador04@gmail.com",
+  "rol": "TRABAJADOR",
+  "descripcion": "Especialista en soporte técnico"
+},
+{
+  "username": "admin03",
+  "password": "admin789",
+  "name": "Marta",
+  "lastName": "Jiménez",
+  "age": 40,
+  "email": "admin03@gmail.com",
+  "rol": "ADMON"
+},
+{
+  "username": "admin04",
+  "password": "admin321",
+  "name": "Luis",
+  "lastName": "Morales",
+  "age": 37,
+  "email": "admin04@gmail.com",
+  "rol": "ADMON",
+  "descripcion": "Encargado de gestión de usuarios"
 }
 ]
 

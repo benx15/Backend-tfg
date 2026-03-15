@@ -21,7 +21,7 @@ const eventosSchema = new mongoose.Schema({
     fecha:{
         type:Date,
         required: true,
-      
+
         get: (fecha) => moment(fecha).tz("Europe/Madrid").format("DD/MM/YYYY HH:mm")
     },
     aforo:{
