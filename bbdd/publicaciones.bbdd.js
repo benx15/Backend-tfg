@@ -6,7 +6,7 @@ const publicaciones =
     "fecha": "2025-01-15T10:30:00Z",
     "autor": {
 
-      "username": "cliente03"
+      "username": "Beita03"
     },
     "grupo": {
       "nombre": "The Stones lovers",
@@ -19,7 +19,7 @@ const publicaciones =
     "fecha": "2025-02-20T20:00:00Z",
     "autor": {
 
-      "username": "cliente04"
+      "username": "mariomn"
     },
     "grupo": {
       "nombre": "Amantes del Jazz"
@@ -33,7 +33,7 @@ const publicaciones =
     "fecha": "2025-03-10T16:00:00Z",
     "autor": {
       
-      "username": "cliente03"
+      "username": "Beita03"
     },
     "grupo": {
       "nombre": "Beyoncé fans"
@@ -45,7 +45,7 @@ const publicaciones =
     "contenido": "Este mes hay varios eventos interesantes, no os perdáis el del día 20.",
     "fecha": "2025-04-05T09:00:00Z",
     "autor": {
-      "username": "cliente04"
+      "username": "mariomn"
     },
     "grupo": {
       "nombre": "Coldplay followers",
@@ -57,7 +57,7 @@ const publicaciones =
     "contenido": "La aplicación es muy intuitiva y fácil de usar, enhorabuena al equipo.",
     "fecha": "2025-05-18T14:45:00Z",
     "autor": {
-      "username": "cliente04"
+      "username": "mariomn"
     },
     "grupo": {
       "nombre": "Electicity"
