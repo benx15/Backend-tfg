@@ -220,9 +220,9 @@ class ClienteControlador{
     }
     async guardarArtistas(req,res){
         try{
-            const { usuarioId, artistasId} = req.body
+            const { usuarioId, artistaId} = req.body
 
-            if(!usuarioId || !artistasId){
+            if(!usuarioId || !artistaId){
                 return res.status(400).json({mensaje: "Faltan campos requeridos: usuarioId, artistaId"})
             }
 
@@ -231,7 +231,7 @@ class ClienteControlador{
                 return res.status(404).json({ mensaje: "Usuario no encontrado" })
             }
 
-            const artista = await udao.findById(artistaId);
+            const artista = await adao.findById(artistaId);
             if(!artista){
                 return res.status(404).json({ mensaje: "Artista no encontrado" })
             }

@@ -40,9 +40,30 @@ class SemillaDatos{
                 console.log("Noticias ya existen")
                 return await ndao.find()
             }
-            const noticiasGuardadas = await ndao.insertMany(noticias)
+            const usuariosBD = await udao.find();
+
+            if(!usuariosBD.length){
+                console.error("Faltan usuarios para crear noticias.")
+                return
+            }
+            const noticiasConfiguradas = noticias.map(noticia => {
+                const autorReal = usuariosBD.find(u => u.name === noticia.autor.name)
+                return{
+                    ...noticia,
+                    autor: autorReal ? {
+
+                        id: autorReal._id,
+                        name: autorReal.name,
+                        lastName: autorReal.lastName
+
+                    } : noticia.autor
+                }
+            })
+
+            const noticiasGuardadas = await ndao.insertMany(noticiasConfiguradas)
             console.log("Noticias cargadas")
             return noticiasGuardadas
+
         }catch(err){
             console.error("Error en la carga de Noticias", err)
         }

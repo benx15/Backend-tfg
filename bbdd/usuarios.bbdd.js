@@ -16,7 +16,10 @@ const usuarios =
     "lastName": "Martínez",
     "age": 25,
     "email": "cliente01@gmail.com",
-    "rol": "CLIENTE"
+    "rol": "CLIENTE",
+    "artistas":{
+      "nombreArtistico": "Drake"
+    }
   },
   {
     "username": "trabajador01",
@@ -28,124 +31,133 @@ const usuarios =
     "rol": "TRABAJADOR"
   },
   {
-    "username": "cliente02",
-    "password": "cliente456",
+    "username": "aniss34",
+    "password": "sAnche",
     "name": "Ana",
     "lastName": "Sánchez",
     "age": 42,
-    "email": "cliente02@gmail.com",
-    "rol": "CLIENTE"
+    "email": "ana.san@gmail.com",
+    "rol": "CLIENTE",
+    "artistas":{
+      "nombreArtistico": "Dua Lipa"
+    }
   },
   {
-    "username": "trabajador02",
-    "password": "trabajador456",
+    "username": "miguelr",
+    "password": "rmu12",
     "name": "Miguel",
     "lastName": "Ruiz",
     "age": 31,
-    "email": "trabajador02@gmail.com",
+    "email": "miguel.ruiz@gmail.com",
     "rol": "TRABAJADOR",
     "descripcion": "Empleado favorito"
   },
   {
-    "username": "cliente03",
-    "password": "cliente789",
+    "username": "Beita03",
+    "password": "alons0",
     "name": "Beatriz",
     "lastName": "Fernández",
     "age": 22,
     "email": "cliente03@gmail.com",
-    "rol": "CLIENTE"
+    "rol": "CLIENTE",
+    "artistas":{
+      "nombreArtistico": "Rosalía"
+    }
   },
   {
-    "username": "admin02",
-    "password": "admin456",
+    "username": "PepeAdmin",
+    "password": "xSnl4*",
     "name": "Pepe",
     "lastName": "Hernandez",
     "age": 28,
-    "email": "admin02@gmail.com",
+    "email": "pepe.admin@gmail.com",
     "rol": "ADMON",
     "descripcion": "Administrador principal del sistema"
   },
   {
-    "username": "cliente04",
-    "password": "cliente444",
+    "username": "mariomn",
+    "password": "kaRt",
     "name": "Mario",
     "lastName": "Martin",
     "age": 20,
-    "email": "cliente04@gmail.com",
+    "email": "mmariomn@gmail.com",
     "rol": "CLIENTE",
     "descripcion": "Me gusta el rock"
   },
   {
-  "username": "cliente05",
-  "password": "cliente456",
+  "username": "luchiii",
+  "password": "mi4nL",
   "name": "Lucía",
   "lastName": "Martínez",
   "age": 27,
-  "email": "cliente05@gmail.com",
+  "email": "luci.mart@gmail.com",
   "rol": "CLIENTE"
 },
 {
-  "username": "cliente06",
-  "password": "cliente789",
+  "username": "Deivid77",
+  "password": "underwater",
   "name": "David",
   "lastName": "López",
   "age": 35,
-  "email": "cliente06@gmail.com",
-  "rol": "CLIENTE"
+  "email": "daavid.lop@gmail.com",
+  "rol": "CLIENTE",
+  "artistas":{
+      "nombreArtistico": "Bad Bunny"
+    }
 },
 {
-  "username": "cliente07",
-  "password": "cliente321",
+  "username": "anaa24",
+  "password": "anaanita",
   "name": "Ana",
-  "lastName": "Sánchez",
+  "lastName": "Carroso",
   "age": 24,
-  "email": "cliente07@gmail.com",
+  "email": "ana.car@gmail.com",
   "rol": "CLIENTE"
 },
 {
-  "username": "cliente08",
-  "password": "cliente654",
+  "username": "javuchuu",
+  "password": "erjavi91",
   "name": "Javier",
   "lastName": "Ruiz",
   "age": 29,
-  "email": "cliente08@gmail.com",
+  "email": "javi.ruiz@gmail.com",
   "rol": "CLIENTE"
 },
 {
-  "username": "trabajador03",
-  "password": "trabajador789",
+  "username": "sergionav",
+  "password": "s3rgi",
   "name": "Sergio",
   "lastName": "Navarro",
   "age": 33,
-  "email": "trabajador03@gmail.com",
+  "email": "sergio.navarro@gmail.com",
   "rol": "TRABAJADOR"
 },
 {
-  "username": "trabajador04",
-  "password": "trabajador321",
+  "username": "albertotor",
+  "password": "4lbert",
   "name": "Alberto",
   "lastName": "Torres",
   "age": 27,
-  "email": "trabajador04@gmail.com",
+  "email": "alberto.torres@gmail.com",
   "rol": "TRABAJADOR",
   "descripcion": "Especialista en soporte técnico"
 },
 {
-  "username": "admin03",
-  "password": "admin789",
+  "username": "Martadev",
+  "password": "martukis",
   "name": "Marta",
   "lastName": "Jiménez",
   "age": 40,
-  "email": "admin03@gmail.com",
+  "email": "marta.dev@gmail.com",
   "rol": "ADMON"
 },
 {
-  "username": "admin04",
-  "password": "admin321",
+  "username": "Luisboss",
+  "password": "soyeljefe",
   "name": "Luis",
   "lastName": "Morales",
   "age": 37,
-  "email": "admin04@gmail.com",
+  "email": "luis.boss@gmail.com",
   "rol": "ADMON",
   "descripcion": "Encargado de gestión de usuarios"
 }

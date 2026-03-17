@@ -1,72 +1,79 @@
 const noticias = [
-  {
-    "titular": "El renacer del sintetizador analógico",
+    {
+    "titular": "Novedad en el genero urbano",
     "tematica": "Album o EP",
-    "contenido": "El dúo berlinés 'Klang' lanza su esperado EP grabado íntegramente con equipos de 1980, redefiniendo el sonido techno actual.",
-    "genero": "Electrónica",
+    "contenido": "El cantante Don Omar sorprende a su audiencia con un nuevo disco",
+    "genero": "Reggaeton",
     "fecha": "2025-01-10T10:00:00Z",
     "autor": {
-      "name": "Javier"
+      "name": "Javier",
+      "lastName": "López"
     }
   },
   {
-    "titular": "Ruta de Vinilos: Rock Progresivo",
+    "titular": "Amantes del rock",
     "tematica": "Quedadas",
-    "contenido": "Mañana a las 18:00 nos reuniremos en la Plaza Central para recorrer las mejores tiendas de discos en busca de joyas del rock de los 70.",
+    "contenido": "El sabado a las 18:00 en Callao se reunirán para recorrer las mejores tiendas de discos en busca de joyas del rock de los 70.",
     "genero": "Rock",
     "fecha": "2025-02-14T18:00:00Z",
     "autor": {
-      "name": "Miguel"
+      "name": "Miguel",
+      "lastName": "Ruiz"
     }
   },
   {
-    "titular": "The Blue Notes: Nuevo cuarteto en la ciudad",
+    "titular": "Nuevo grupo: Katarsis",
     "tematica": "Grupos",
-    "contenido": "Se presenta una nueva formación liderada por la trompetista Sarah Jenkins, prometiendo revitalizar el circuito de Jazz local.",
-    "genero": "Jazz",
+    "contenido": "Se presenta un nuevo grupo de rock local formado por jovenes entre 18-25 años.",
+    "genero": "Rock alternativo",
     "fecha": "2025-03-05T12:30:00Z",
     "autor": {
-      "name": "Sergio"
+      "name": "Sergio",
+      "lastName": "Navarro"
     }
   },
   {
-    "titular": "Gira mundial 'Neon Hearts' confirmada",
+    "titular": "Gira mundial ",
     "tematica": "Otros",
-    "contenido": "La superestrella del Pop anuncia 40 fechas internacionales tras el éxito masivo de su último single en redes sociales.",
-    "genero": "Pop",
+    "contenido": "La superestrella del Hip Hop Drake anuncia 40 fechas internacionales tras el éxito masivo de su último single en redes sociales.",
+    "genero": "Hip Hop",
     "fecha": "2025-04-20T09:00:00Z",
     "autor": {
-      "name": "Alberto"
+      "name": "Alberto",
+      "lastName": "Torres"
     }
   },
   {
-    "titular": "Noche de Jam Session en el Soho",
+    "titular": "Tarde en el Retiro",
     "tematica": "Quedadas",
     "contenido": "Evento abierto para músicos de Jazz que quieran improvisar en directo. Trae tu instrumento y únete a la banda base.",
     "genero": "Jazz",
     "fecha": "2025-05-08T21:00:00Z",
     "autor": {
-      "name": "Javier"
+      "name": "Javier",
+      "lastName": "López"
     }
   },
   {
-    "titular": "The Thunder: La disolución de un icono",
+    "titular": "Daft Punk: La disolución ",
     "tematica": "Grupos",
-    "contenido": "Tras 15 años en los escenarios, la banda de Hard Rock anuncia su separación definitiva tras un último concierto de despedida.",
-    "genero": "Rock",
+    "contenido": "Tras tanto años el duo más iconico de la historia de la electronica dice adios con su ultima canción",
+    "genero": "Electronica",
     "fecha": "2025-06-01T15:00:00Z",
     "autor": {
-      "name": "Miguel"
+      "name": "Miguel",
+      "lastName": "Ruiz"
     }
   },
   {
-    "titular": "Fusión Digital: El algoritmo rítmico",
+    "titular": "La Reinvencion",
     "tematica": "Album o EP",
-    "contenido": "Lanzamiento del nuevo álbum 'Code & Bass', un experimento sonoro donde la IA genera las bases de cada pista electrónica.",
-    "genero": "Electrónica",
+    "contenido": "Lanzamiento del nuevo álbum de Artic Monkeys cuenta con 15 canciones totalmente innovadoras .",
+    "genero": "Rock Indie",
     "fecha": "2025-07-19T11:00:00Z",
     "autor": {
-      "name": "Sergio"
+      "name": "Sergio",
+      "lastName": "Navarro"
     }
   },
   {
@@ -76,27 +83,30 @@ const noticias = [
     "genero": "Pop",
     "fecha": "2025-08-22T17:00:00Z",
     "autor": {
-      "name": "Alberto"
+      "name": "Alberto",
+      "lastName": "Torres"
     }
   },
   {
-    "titular": "Festival 'Guitarras de Fuego'",
+    "titular": "Especial Feria de Sevila",
     "tematica": "Quedadas",
-    "contenido": "Punto de encuentro para fans del Heavy Metal. Habrá stands de merchandising, comida y bandas tributo en directo.",
-    "genero": "Rock",
+    "contenido": "Punto de encuentro para fans del flamenco con la aperecion de la estrella Rosalía ",
+    "genero": "Flamenco",
     "fecha": "2025-09-13T19:00:00Z",
     "autor": {
-      "name": "Javier"
+      "name": "Javier",
+      "lastName": "López"
     }
   },
   {
-    "titular": "Explorando el Nu-Jazz",
+    "titular": "Explorando sus raices",
     "tematica": "Album o EP",
-    "contenido": "Reseña del nuevo trabajo de 'Urban Beats', un disco que mezcla perfectamente el Jazz clásico con elementos de música urbana.",
-    "genero": "Jazz",
+    "contenido": "El nuevo disco de Bad Bunny es todo un llamamiento a su tierra natal en la que se ve reflejada en sus 17 canciones",
+    "genero": "Reggaeton",
     "fecha": "2025-10-30T14:00:00Z",
     "autor": {
-      "name": "Miguel"
+      "name": "Miguel",
+      "lastName": "Ruiz"
     }
   }
 ];

@@ -11,6 +11,6 @@ ruta.post("/respuesta" , validacion, roles.esCliente, clienteControlador.respues
 ruta.get("/misPosts/:usuarioId", validacion, roles.esCliente, clienteControlador.verMisPosts)
 ruta.get("/misRespuestas/:usuarioId", validacion, roles.esCliente, clienteControlador.verMisRespustas)
 ruta.post("/guardarArtista" , validacion, roles.esCliente, clienteControlador.guardarArtistas)
-ruta.get("misArtistas/:usuarioId", validacion, roles.esCliente , clienteControlador.verMisArtistas)
+ruta.get("/misArtistas/:usuarioId", validacion, roles.esCliente , clienteControlador.verMisArtistas)
 
 module.exports= ruta

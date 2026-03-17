@@ -27,7 +27,8 @@ const noticiaSchema = new mongoose.Schema({
     },
     autor:{
         id:{type: mongoose.Schema.Types.ObjectId, ref: "Usuario" , required: true},
-        name:{type: String, required: true}
+        name:{type: String, required: true},
+        lastName:{type: String, required: true}
     }
     
 },{

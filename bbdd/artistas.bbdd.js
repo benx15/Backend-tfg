@@ -8,7 +8,7 @@ const artistas =
   {
     "nombreArtistico": "Rosalía",
     "nacionalidad": "Española",
-    "genero": "Pop"
+    "genero": "Flamenco"
   },
   {
     "nombreArtistico": "The Strokes",
