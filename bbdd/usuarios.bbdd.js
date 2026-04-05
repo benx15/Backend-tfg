@@ -58,7 +58,7 @@ const usuarios =
     "name": "Beatriz",
     "lastName": "Fernández",
     "age": 22,
-    "email": "cliente03@gmail.com",
+    "email": "bea.fer@gmail.com",
     "rol": "CLIENTE",
     "artistas":{
       "nombreArtistico": "Rosalía"
@@ -115,7 +115,7 @@ const usuarios =
   "rol": "CLIENTE"
 },
 {
-  "username": "javuchuu",
+  "username": "javichuu",
   "password": "erjavi91",
   "name": "Javier",
   "lastName": "Ruiz",

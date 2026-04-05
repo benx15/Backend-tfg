@@ -5,9 +5,9 @@ const grupos =
 
     "genero": "Rock",
     "usuarios": [
-      { "username": "cliente03" },
-      { "username": "cliente04" },
-      { "username": "cliente06" }
+      { "username": "Beita03" },
+      { "username": "mariomn" },
+      { "username": "luchiii" }
     ],
     "eventos": [
       {"nombre": "Concierto Rock Estelar"},
@@ -30,8 +30,8 @@ const grupos =
     
     "genero": "Pop",
     "usuarios": [
-      { "username": "cliente03" },
-      { "username": "cliente04" }
+      { "username": "Beita03" },
+      { "username": "mariomn" }
     ],
     "eventos": [
       {"nombre": "Pop Party Night"},
@@ -50,11 +50,11 @@ const grupos =
   },
   {
     "nombre": "Coldplay followers",
- 
+
     "genero": "Rock Alternativo",
     "usuarios": [
-      { "username": "cliente03" },
-      { "username": "cliente04" }
+      { "username": "Beita03" },
+      { "username": "mariomn" }
     ],
     "eventos": [
       {"nombre": "Noche de Rock Alternativo"},
@@ -73,11 +73,11 @@ const grupos =
   },
   {
     "nombre": "Electicity",
- 
+
     "genero": "Electrónica",
     "usuarios": [
-      { "username": "cliente03" },
-      { "username": "cliente04" }
+      { "username": "anaa24" },
+      { "username": "javichuu" }
     ],
     "eventos": [
       {"nombre": "Ambient Night: Modular Synths"},
@@ -99,8 +99,8 @@ const grupos =
   
     "genero": "Jazz",
     "usuarios": [
-      { "username": "cliente03" },
-      { "username": "cliente04" }
+      { "username": "Deivid77" },
+      { "username": "javichuu" }
     ],
     "eventos": [
       {"nombre": "Festival Jazz Nocturno"}
@@ -117,8 +117,8 @@ const grupos =
 
     "genero": "Pop",
     "usuarios": [
-      { "username": "cliente03" },
-      { "username": "cliente04" }
+      { "username": "luchiii" },
+      { "username": "anaa24" }
     ],
     "eventos": [
       {"nombre": "Pop Party Night"},
