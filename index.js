@@ -32,8 +32,8 @@ app.get("/" , (req,res) => {
     res.status(200).send("OK")
 })
 
-// cammbiar 27017 por conexion atlas
-mongoose.connect("mongodb://127.0.0.1:27017/bbdd-tfg")
+
+mongoose.connect("mongodb+srv://benat_db_user:Juniml8*@micluster1.mb8xvob.mongodb.net/bbdd-tfg")
   .then(async () => {
     console.log("MongoDB conectado");
 
