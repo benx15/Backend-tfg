@@ -13,5 +13,8 @@ ruta.get("/buscarGrupos", validacion, roles.esTrabajador, trabajadorControlador.
 ruta.put("/noticiaActualizar/:id", validacion, roles.esTrabajador, trabajadorControlador.actualizarNoticia)
 ruta.put("/eventoActualizar/:id", validacion, roles.esTrabajador, trabajadorControlador.actualizarEvento)
 ruta.put("/grupoActualizar/:id", validacion, roles.esTrabajador, trabajadorControlador.actualizarGrupo)
+ruta.delete("/borrarNoticia/:id", validacion, roles.esTrabajador, trabajadorControlador.borrarNoticia)
+ruta.delete("/borrarEvento/:id", validacion, roles.esTrabajador, trabajadorControlador.borrarEvento)
+ruta.delete("/borrarGrupo/:id" , validacion, roles.esTrabajador, trabajadorControlador.borrarGrupo)
 
 module.exports = ruta

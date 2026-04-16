@@ -117,7 +117,58 @@ class TrabajadorControlador{
             return res.status(500).json({mensaje: "Error interno"})
         }
     }
-
+    async borrarNoticia(req,res){
+        try{
+            if(!mongoose.Types.ObjectId.isValid(req.params.id))
+                return res.status(400).send("Id invalido")
+            const noticiaEliminada = await ndao.findByIdAndDelete(req.params.id)
+            if (!noticiaEliminada){
+                return res.status(404).send("Noticia no encontrada")
+            }
+            return res.status(200).json({mensaje: "noticia eliminada correctamente"})
+        }catch(err){
+            console.error("Error al borrar noticia", err)
+            return res.status(500).json({mensaje: "Error general, ver consola"})
+        }
+    }
+    async borrarEvento(req,res){
+        try {
+            if(!mongoose.Types.ObjectId.isValid(req.params.id))
+                return res.status(400).send("Id invalido")
+            const evento = await edao.findById(req.params.id)
+            if (!evento) {
+                return res.status(404).send("Evento no encontrado")
+            }
+        
+            if (evento.usuarios && evento.usuarios.length > 0) {
+                return res.status(403).json({ mensaje: "No se puede eliminar un evento con usuarios inscritos" })
+            }
+            await edao.findByIdAndDelete(req.params.id)
+            return res.status(200).json({ mensaje: "Evento eliminado correctamente", evento })
+        } catch (err) {
+            console.error("Error al borrar evento", err)
+            return res.status(500).json({ mensaje: "Error general, ver consola" })
+        }
+    }
+    async borrarGrupo(req, res) {
+        try {
+            if(!mongoose.Types.ObjectId.isValid(req.params.id))
+                return res.status(400).send("Id invalido")
+            const grupo = await gdao.findById(req.params.id)
+            if (!grupo) {
+                return res.status(404).send("Grupo no encontrado")
+            }
+        
+            if (grupo.usuarios && grupo.usuarios.length > 0) {
+                return res.status(403).json({ mensaje: "No se puede eliminar un grupo con usuarios registrados" })
+            }
+            await gdao.findByIdAndDelete(req.params.id)
+            return res.status(200).json({ mensaje: "Grupo eliminado correctamente", grupo })
+        } catch (err) {
+            console.error("Error al borrar grupo", err)
+            return res.status(500).json({ mensaje: "Error general, ver consola" })
+        }
+    }
 }
 
 module.exports = new TrabajadorControlador()

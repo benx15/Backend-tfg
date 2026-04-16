@@ -8,8 +8,8 @@
         },
         cantidad:{
             type: Number,
-            default: 2,
-            min: [2, "No se aceptan grupos con menos de 2 personas "]
+            default: 0,
+            min: [0]
         },
         genero:{
             type: String,
