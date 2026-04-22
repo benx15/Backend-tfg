@@ -15,7 +15,7 @@ const rutaArtistas = require("./rutas/artistas.ruta")
 
 //Middleware
 app.use(cors({
-    origin: "http://localhost:4200", 
+    origin: "*", 
     methods: ["GET","POST","PUT","DELETE"],
     credentials: true
 }));
