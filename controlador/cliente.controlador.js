@@ -278,6 +278,22 @@ class ClienteControlador{
             return res.status(500).json({ mensaje: "Error general, ver consola" });
     }
     }
+    async verPostGrupo(req,res){
+        try{
+            const { grupoId } = req.params;
+
+            const publicaciones = await pdao.find({ "grupo.id": grupoId })
+            .sort({ fecha: -1 });
+
+            res.json({
+                mensaje: "Publicaciones del grupo",
+                total: publicaciones.length,
+                publicaciones
+            });
+        }catch(err){
+            return res.status(500).json({ mensaje: "Error general, ver consola" });
+        }
+    }
 }
 
 module.exports= new ClienteControlador()
