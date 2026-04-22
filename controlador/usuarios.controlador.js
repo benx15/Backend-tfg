@@ -61,6 +61,7 @@ class UsuarioControlador{
         token,
         rol: usuario.rol,
         nombre: usuario.name,
+        lastName: usuario.lastName,
         grupo: grupo ? grupo._id : null,
         usuarioId: usuario._id
       });
