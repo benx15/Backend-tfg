@@ -35,13 +35,13 @@ app.get("/" , (req,res) => {
 })
 
 
-mongoose.connect("mongodb+srv://benat_db_user:Juniml8*@micluster1.mb8xvob.mongodb.net/bbdd-tfg")
+mongoose.connect(process.env.MONGODB_URI)
   .then(async () => {
     console.log("MongoDB conectado");
 
     await cargaDatos.cargarTodosDatos();
 
-    app.listen(3000, () => {
+    app.listen(process.env.PORT || 3000, () => {
       console.log("Node arrancado por el puerto 3000");
     });
   })
