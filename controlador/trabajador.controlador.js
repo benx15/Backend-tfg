@@ -26,6 +26,12 @@ class TrabajadorControlador{
     async crearEvento(req, res){
         try{
             const evento = req.body;
+            if (evento.artista && Array.isArray(evento.artista)) {
+                    evento.artista = evento.artista.map(a => ({
+                    id: a.id || a._id,
+                    nombreArtistico: a.nombreArtistico
+                }));
+            }
             const eventoNuevo = new edao(evento)
             const result = await eventoNuevo.save()
             if(!eventoNuevo){
