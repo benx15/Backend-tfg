@@ -2,11 +2,11 @@ const express = require("express")
 const mongoose = require("mongoose")
 const ruta = express.Router()
 const edao = require("../modelo/eventos.modelo")
-const eventos = require("../bbdd/eventos.bbdd")
+
 const ndao = require("../modelo/noticias.modelo")
-const noticias = require("../bbdd/noticias.bbdd")
+
 const gdao = require("../modelo/grupos.modelo")
-const grupos = require("../bbdd/grupos.bbdd")
+
 
 class TrabajadorControlador{
     async crearNoticia(req, res){

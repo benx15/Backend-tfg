@@ -2,7 +2,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const ruta = express.Router()
 const adao = require("../modelo/artistas.modelo")
-const artistas = require("../bbdd/artistas.bbdd")
+
 
 class ArtistasControlador{
     async obtenerArtistas(req, res) {

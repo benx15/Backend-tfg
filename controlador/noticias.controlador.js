@@ -2,18 +2,10 @@ const express = require("express")
 const mongoose = require("mongoose")
 const ruta = express.Router()
 const ndao = require("../modelo/noticias.modelo")
-const noticias = require("../bbdd/noticias.bbdd")
+
 
 class NoticiasControlador{
-    async carga(req,res){
-        try{
-            await ndao.insertMany(noticias)
-            return res.status(201).send("Carga finalizada")
-        }catch(err){
-            console.error("Error en la carga", err)
-            return res.status(500).json({mensaje: "Error general, ver consola"})
-        }
-    }
+    
     async buscarTodas(req, res){
         try{
             const result = await ndao.find()

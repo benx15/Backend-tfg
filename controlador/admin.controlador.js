@@ -2,7 +2,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const ruta = express.Router()
 const udao = require("../modelo/usuarios.modelo")
-const usuarios = require("../bbdd/usuarios.bbdd")
+
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 

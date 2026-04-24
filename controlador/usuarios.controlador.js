@@ -2,21 +2,13 @@ const express = require("express")
 const mongoose = require("mongoose")
 const ruta = express.Router()
 const udao = require("../modelo/usuarios.modelo")
-const usuarios = require("../bbdd/usuarios.bbdd")
+
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const gdao = require("../modelo/grupos.modelo")
 
 class UsuarioControlador{
-  async cargaInicial(req,res){
-    try{
-      await udao.insertMany(usuarios)
-      return res.status(201).send("Carga finalizada")
-    }catch(err){
-      console.error("Error en la carga", err)
-      return res.status(500).json({mensaje: "Error general, ver consola"})
-    }
-  }
+  
   async register(req,res){
     try{
       const {password , ...usuario}= req.body;
