@@ -7,7 +7,7 @@ const rutaNoticias = require("./rutas/noticias.rutas")
 const rutaUsuario = require("./rutas/usuarios.rutas")
 const rutaGrupos = require("./rutas/grupos.rutas")
 const rutaEventos = require("./rutas/eventos.ruta")
-const cargaDatos = require("./semilla/semilla.datos")
+
 const rutaAdmin = require("./rutas/admin.ruta")
 const rutaCliente = require("./rutas/cliente.ruta")
 const rutaTrabajador= require("./rutas/trabajador.ruta")
@@ -39,7 +39,7 @@ mongoose.connect(process.env.MONGODB_URI)
   .then(async () => {
     console.log("MongoDB conectado");
 
-    await cargaDatos.cargarTodosDatos();
+  
 
     app.listen(process.env.PORT || 3000, () => {
       console.log("Node arrancado por el puerto 3000");
