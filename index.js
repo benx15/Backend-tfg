@@ -15,10 +15,14 @@ const rutaArtistas = require("./rutas/artistas.ruta")
 
 //Middleware
 app.use(cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:4200",
-    methods: ["GET","POST","PUT","DELETE"],
-    credentials: true
+  origin: [
+    process.env.FRONTEND_URL || "https://blogcert.vercel.app",
+    "http://localhost:4200"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
 }));
+
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use("/api/noticias" , rutaNoticias)
