@@ -13,5 +13,5 @@ ruta.get("/misRespuestas/:usuarioId", validacion, roles.esCliente, clienteContro
 ruta.post("/guardarArtista" , validacion, roles.esCliente, clienteControlador.guardarArtistas)
 ruta.get("/misArtistas/:usuarioId", validacion, roles.esCliente , clienteControlador.verMisArtistas)
 ruta.get("/verPostGrupo/:grupoId", validacion, roles.esCliente, clienteControlador.verPostGrupo)
-ruta.get("/mis-grupos/:usuarioId",validacion,roles.esCliente ,ClienteControlador.verMisGrupos);
+ruta.get("/mis-grupos/:usuarioId",validacion, roles.esCliente , clienteControlador.verMisGrupos);
 module.exports= ruta
