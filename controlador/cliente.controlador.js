@@ -294,6 +294,21 @@ class ClienteControlador{
             return res.status(500).json({ mensaje: "Error general, ver consola" });
         }
     }
+    async verMisGrupos(req, res) {
+    try {
+        const { usuarioId } = req.params;
+        const grupos = await gdao.find({ "usuarios.id": usuarioId });
+
+        res.json({
+            mensaje: "Grupos del usuario obtenidos",
+            total: grupos.length,
+            grupos: grupos
+        });
+    } catch (err) {
+        console.error("Error al obtener grupos del usuario", err);
+        return res.status(500).json({ mensaje: "Error al buscar grupos" });
+    }
+}
 }
 
 module.exports= new ClienteControlador()
