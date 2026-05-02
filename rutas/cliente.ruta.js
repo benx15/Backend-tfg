@@ -9,7 +9,7 @@ ruta.post("/apuntarseEvento" , validacion , roles.esCliente, clienteControlador.
 ruta.post("/publicar", validacion, roles.esCliente, clienteControlador.crearPost)
 ruta.post("/respuesta" , validacion, roles.esCliente, clienteControlador.respuestaPost)
 ruta.get("/misPosts/:usuarioId", validacion, roles.esCliente, clienteControlador.verMisPosts)
-ruta.get("/misRespuestas/:usuarioId", validacion, roles.esCliente, clienteControlador.verMisRespustas)
+ruta.get("/misRespuestas/:usuarioId", validacion, roles.esCliente, clienteControlador.verMisRespuestas)
 ruta.post("/guardarArtista" , validacion, roles.esCliente, clienteControlador.guardarArtistas)
 ruta.get("/misArtistas/:usuarioId", validacion, roles.esCliente , clienteControlador.verMisArtistas)
 ruta.get("/verPostGrupo/:grupoId", validacion, roles.esCliente, clienteControlador.verPostGrupo)

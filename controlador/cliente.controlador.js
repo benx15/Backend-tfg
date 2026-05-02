@@ -173,7 +173,7 @@ class ClienteControlador{
             return res.status(500).json({mensaje: "Error general, ver consola"});
         }
     }
-    async verMisRespustas(req,res){
+    async verMisRespuestas(req,res){
         try{
             const { usuarioId } = req.params;
 
