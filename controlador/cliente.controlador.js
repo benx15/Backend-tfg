@@ -295,20 +295,38 @@ class ClienteControlador{
         }
     }
     async verMisGrupos(req, res) {
-    try {
-        const { usuarioId } = req.params;
-        const grupos = await gdao.find({ "usuarios.id": usuarioId });
+        try {
+            const { usuarioId } = req.params;
+            const grupos = await gdao.find({ "usuarios.id": usuarioId });
 
-        res.json({
-            mensaje: "Grupos del usuario obtenidos",
-            total: grupos.length,
-            grupos: grupos
-        });
-    } catch (err) {
-        console.error("Error al obtener grupos del usuario", err);
-        return res.status(500).json({ mensaje: "Error al buscar grupos" });
+            res.json({
+                mensaje: "Grupos del usuario obtenidos",
+                total: grupos.length,
+                grupos: grupos
+            });
+        } catch (err) {
+            console.error("Error al obtener grupos del usuario", err);
+            return res.status(500).json({ mensaje: "Error al buscar grupos" });
+        }
     }
-}
+    async verMisEventos(req, res) {
+        try {
+            const { usuarioId } = req.params;
+            const usuario = await udao.findById(usuarioId);
+            if (!usuario) {
+                return res.status(404).json({ mensaje: "Usuario no encontrado" });
+            }
+            const eventos = await edao.find({ "usuarios.id": usuarioId });
+            res.json({
+                mensaje: "Eventos del usuario",
+                total: eventos.length,
+                eventos: eventos
+            });
+        } catch (err) {
+            console.error("Error al obtener eventos del usuario", err);
+            return res.status(500).json({ mensaje: "Error general, ver consola" });
+        }
+    }
 }
 
 module.exports= new ClienteControlador()
