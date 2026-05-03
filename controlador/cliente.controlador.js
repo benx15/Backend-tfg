@@ -312,10 +312,7 @@ class ClienteControlador{
     async verMisEventos(req, res) {
         try {
             const { usuarioId } = req.params;
-            const usuario = await udao.findById(usuarioId);
-            if (!usuario) {
-                return res.status(404).json({ mensaje: "Usuario no encontrado" });
-            }
+            
             const eventos = await edao.find({ "usuarios.id": usuarioId });
             res.json({
                 mensaje: "Eventos del usuario",
