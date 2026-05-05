@@ -55,7 +55,9 @@ class UsuarioControlador{
         nombre: usuario.name,
         lastName: usuario.lastName,
         grupo: grupo ? grupo._id : null,
-        usuarioId: usuario._id
+        usuarioId: usuario._id,
+        username: usuario.username,   
+        email: usuario.email 
       });
 
     }catch(err){
